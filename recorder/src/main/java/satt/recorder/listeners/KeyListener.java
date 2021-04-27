@@ -13,7 +13,7 @@ public class KeyListener extends NativeKeyAdapter {
         System.out.println("nativeKeyPressed " +
                 "e.getKeyCode() : " + e.getKeyCode() +
                 ", e.getModifiers():" + e.getModifiers() +
-                ", e.getKeyCharqqй():" + e.getKeyChar());
+                ", e.getKeyChar():" + e.getKeyChar());
 //        if (e.getModifiers() & NativeKeyEvent.META_MASK
 //                 && e.getModifiers() & NativeKeyEvent.CTRL_MASK) {
 //            System.out.print("Attempting to consume CMD+F9 event...\t");
