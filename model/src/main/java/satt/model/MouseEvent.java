@@ -1,8 +1,8 @@
 package satt.model;
 
-public class KeyStep implements Step {
+public class MouseEvent implements Event {
     @Override
     public Type getType() {
-        return Type.KEYBOARD;
+        return Type.MOUSE;
     }
 }

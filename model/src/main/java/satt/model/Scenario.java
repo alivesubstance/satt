@@ -5,7 +5,6 @@ import java.util.*;
 public class Scenario {
 
     private Metadata metadata;
-    private List<Step> steps;
-
+    private List<Event> events;
 
 }

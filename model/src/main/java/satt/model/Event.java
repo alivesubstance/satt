@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 //@JsonSubTypes({
 //        @JsonSubTypes.Type(value = RemoveMoneyInputValidationRuleOperation.class, name = "REMOVE_MONEY_INPUT_MAX_VALUE_VALIDATION_RULE"),
 //})
-public interface Step {
+public interface Event {
 
     Type getType();
 

@@ -26,4 +26,14 @@ public class Resolution {
     public void setHeight(int height) {
         this.height = height;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Resolution{");
+        sb.append("width=").append(width);
+        sb.append(", height=").append(height);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }

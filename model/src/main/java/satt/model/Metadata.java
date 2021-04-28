@@ -1,7 +1,5 @@
 package satt.model;
 
-import lombok.Data;
-
 public class Metadata {
 
     private String userName;
@@ -38,4 +36,13 @@ public class Metadata {
         this.resolution = resolution;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Metadata{");
+        sb.append("userName='").append(userName).append('\'');
+        sb.append(", os='").append(os).append('\'');
+        sb.append(", resolution=").append(resolution);
+        sb.append('}');
+        return sb.toString();
+    }
 }

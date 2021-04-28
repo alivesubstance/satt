@@ -6,9 +6,11 @@ import org.jnativehook.mouse.NativeMouseAdapter;
 import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.NativeMouseInputListener;
 import org.jnativehook.mouse.NativeMouseListener;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 
+@Component
 public class MouseListener extends NativeMouseAdapter {
 
     @Override

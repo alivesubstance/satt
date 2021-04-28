@@ -1,15 +1,32 @@
 package satt.recorder.listeners;
 
-import org.jnativehook.GlobalScreen;
-import org.jnativehook.NativeInputEvent;
 import org.jnativehook.keyboard.NativeKeyAdapter;
 import org.jnativehook.keyboard.NativeKeyEvent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import satt.recorder.handlers.key.KeyEventHandler;
 
-import java.lang.reflect.Field;
+import java.util.*;
 
+@Component
 public class KeyListener extends NativeKeyAdapter {
+
+    private List<KeyEventHandler> keyEventHandlers;
+
+    @Autowired
+    public KeyListener(List<KeyEventHandler> keyEventHandlers) {
+        this.keyEventHandlers = keyEventHandlers;
+    }
+
     @Override
     public void nativeKeyPressed(NativeKeyEvent e) {
+        for (KeyEventHandler keyEventHandler : keyEventHandlers) {
+            if (keyEventHandler.process(e)) {
+                break;
+            }
+        }
+
+
         System.out.println("nativeKeyPressed " +
                 "e.getKeyCode() : " + e.getKeyCode() +
                 ", e.getModifiers():" + e.getModifiers() +
