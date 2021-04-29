@@ -1,4 +1,4 @@
-package recorder;
+package satt.examples.recorder;
 
 
 import org.jnativehook.GlobalScreen;
@@ -36,7 +36,6 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

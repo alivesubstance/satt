@@ -13,6 +13,7 @@
         <module>recorder</module>
         <module>model</module>
         <module>player</module>
+        <module>examples</module>
     </modules>
 
     <properties>

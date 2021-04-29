@@ -1,4 +1,4 @@
-package recorder;
+package satt.examples.recorder;
 
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;

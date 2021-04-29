@@ -1,11 +1,7 @@
-package player;
+package satt.examples.player;
 
 import java.awt.AWTException;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Frame;
 import java.awt.Robot;
-import java.awt.TextArea;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
