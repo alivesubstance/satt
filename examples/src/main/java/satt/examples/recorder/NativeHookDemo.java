@@ -25,6 +25,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.text.BadLocationException;
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.ItemSelectable;
@@ -211,7 +212,7 @@ public class NativeHookDemo extends JFrame implements ActionListener, ItemListen
                 GlobalScreen.removeNativeKeyListener(this);
             }
         } else if (item == menuItemButtonEvents) {
-            // Button checkbox was changed, adjust listeners accordingly
+//             Button checkbox was changed, adjust listeners accordingly
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 GlobalScreen.addNativeMouseListener(this);
             } else {
@@ -226,11 +227,11 @@ public class NativeHookDemo extends JFrame implements ActionListener, ItemListen
 //            }
         } else if (item == menuItemWheelEvents) {
             // Motion checkbox was changed, adjust listeners accordingly
-            if (e.getStateChange() == ItemEvent.SELECTED) {
-                GlobalScreen.addNativeMouseWheelListener(this);
-            } else {
-                GlobalScreen.removeNativeMouseWheelListener(this);
-            }
+//            if (e.getStateChange() == ItemEvent.SELECTED) {
+//                GlobalScreen.addNativeMouseWheelListener(this);
+//            } else {
+//                GlobalScreen.removeNativeMouseWheelListener(this);
+//            }
         }
     }
 

@@ -1,5 +1,6 @@
 package satt.recorder.service;
 
+import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,14 @@ public class MetadataService {
                 getOs(),
                 getResolution()
         );
+    }
+
+    public boolean isOsWindows() {
+        return SystemUtils.IS_OS_WINDOWS;
+    }
+
+    public boolean isOsMac() {
+        return SystemUtils.IS_OS_MAC;
     }
 
     private String getUserName() {

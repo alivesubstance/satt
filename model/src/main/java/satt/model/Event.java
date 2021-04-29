@@ -18,7 +18,8 @@ public interface Event {
 
     enum Type {
         MOUSE,
-        KEYBOARD
+        KEYBOARD,
+        DELAY
     }
 
 }

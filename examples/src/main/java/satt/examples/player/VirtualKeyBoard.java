@@ -47,9 +47,9 @@ public class VirtualKeyBoard extends Robot {
 
 
         VirtualKeyBoard kb = new VirtualKeyBoard();
-        int xCoord = 1998;
+        int xCoord = 935;
 
-        int yCoord = 1150;
+        int yCoord = 600;
         kb.setAutoDelay(250);
         kb.mouseMove(xCoord, yCoord);
 
@@ -58,7 +58,15 @@ public class VirtualKeyBoard extends Robot {
         //String keyCombination = "shift+a+1+c"; // types A!C on screen
 
         // For your case
-        String keyCombination = "alt+z";
+//        String keyCombination = "alt+z";
+
+        //----------
+        // Mac OS
+        //----------
+        // command + a
+//        String keyCombination = "meta+a";
+        // alt + l
+        String keyCombination = "alt+l";
 
         kb.mousePress(InputEvent.BUTTON1_DOWN_MASK);
         kb.pressKeys(keyCombination);

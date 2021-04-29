@@ -11,9 +11,9 @@ public class Player {
         try {
 
 
-            int xCoord = 1998;
+            int xCoord = 608;
 
-            int yCoord = 1150;
+            int yCoord = 318;
 
             // Move the cursor
 
@@ -21,12 +21,16 @@ public class Player {
             robot.setAutoDelay(250);
             robot.mouseMove(xCoord, yCoord);
 
-            // simulate alt+z
             robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-            robot.keyPress(KeyEvent.VK_ALT);
-            robot.keyPress(KeyEvent.VK_Z);
-            robot.keyRelease(KeyEvent.VK_Z);
-            robot.keyRelease(KeyEvent.VK_ALT);
+            robot.keyPress(KeyEvent.VK_A);
+            robot.keyRelease(KeyEvent.VK_A);
+
+            // simulate alt+z
+//            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//            robot.keyPress(KeyEvent.VK_ALT);
+//            robot.keyPress(KeyEvent.VK_Z);
+//            robot.keyRelease(KeyEvent.VK_Z);
+//            robot.keyRelease(KeyEvent.VK_ALT);
 
 
             // Simulate double mouse click
