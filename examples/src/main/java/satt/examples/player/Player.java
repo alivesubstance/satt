@@ -4,6 +4,8 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.im.InputContext;
+import java.util.*;
 
 public class Player {
     public static void main(String[] args) {
@@ -11,19 +13,42 @@ public class Player {
         try {
 
 
-            int xCoord = 608;
 
+
+            int xCoord = 608;
             int yCoord = 318;
 
             // Move the cursor
-
             Robot robot = new Robot();
             robot.setAutoDelay(250);
             robot.mouseMove(xCoord, yCoord);
 
+            // change locale to ENG
+//            InputContext.getInstance().selectInputMethod(Locale.ENGLISH);
+//
+//            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//            robot.keyPress(KeyEvent.VK_A);
+//            robot.keyRelease(KeyEvent.VK_A);
+
+            // change locale to RUS
+//            Locale locale = new Locale.Builder()
+//                    .setLanguage("ru")
+//                    .setScript("Cyrl")
+//                    .build();
+//            InputContext.getInstance().selectInputMethod(locale);
+
+
+            ///////////////////////////////////////////////////////////////////
+            //                                                               //
+            // change layout by simulate key combination for layout changing //
+            //                                                               //
+            ///////////////////////////////////////////////////////////////////
+
+
             robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-            robot.keyPress(KeyEvent.VK_A);
-            robot.keyRelease(KeyEvent.VK_A);
+            robot.keyPress(KeyEvent.VK_F);
+            robot.keyRelease(KeyEvent.VK_F);
+
 
             // simulate alt+z
 //            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
