@@ -1,24 +1,21 @@
 package satt.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.*;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class KeyEvent implements Event {
 
-    private final String description;
-    private final List<Integer> keyCodes;
-
-    public KeyEvent(String description, List<Integer> keyCodes) {
-        this.description = description;
-        this.keyCodes = keyCodes;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public List<Integer> getKeyCodes() {
-        return keyCodes;
-    }
+    private String locale;
+    private String keyText;
+    private List<Integer> keyCodes;
 
     @Override
     public Type getType() {

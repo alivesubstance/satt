@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import satt.model.Metadata;
 import satt.model.Resolution;
+import satt.model.OsType;
 
 import java.awt.Dimension;
 import java.awt.HeadlessException;
@@ -24,20 +25,18 @@ public class MetadataService {
         );
     }
 
-    public boolean isOsWindows() {
-        return SystemUtils.IS_OS_WINDOWS;
-    }
-
-    public boolean isOsMac() {
-        return SystemUtils.IS_OS_MAC;
-    }
-
     private String getUserName() {
         return System.getProperty("user.name");
     }
 
-    private String getOs() {
-        return System.getProperty("os.name");
+    private OsType getOs() {
+        if (SystemUtils.IS_OS_WINDOWS) {
+            return OsType.WINDOWS;
+        } else if (SystemUtils.IS_OS_MAC) {
+            return OsType.MAC;
+        }
+
+        throw new IllegalArgumentException("Unsupported operation type " + System.getProperty("os.name"));
     }
 
     private Resolution getResolution() {

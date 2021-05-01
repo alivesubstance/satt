@@ -10,4 +10,8 @@ public interface KeyEventHandler {
         return (e.getModifiers() & NativeKeyEvent.META_MASK) != 0;
     }
 
+    default boolean isCtrPressed(NativeKeyEvent e) {
+        return (e.getModifiers() & NativeKeyEvent.META_MASK) != 0;
+    }
+
 }

@@ -1,19 +1,28 @@
 package satt.recorder.translators;
 
 import org.jnativehook.keyboard.NativeKeyEvent;
+import org.springframework.stereotype.Component;
+import satt.model.OsType;
 
 import java.awt.event.KeyEvent;
 import java.util.*;
 
-public class MacKeyCodeTranslator {
-
-    // JNativeHook to Java AWT Robot mapping
-    private static final Map<Integer, Integer> KEY_CODES = new HashMap<>();
+@Component
+public class MacKeyCodeTranslator extends KeyCodeTranslator {
 
     public MacKeyCodeTranslator() {
-        KEY_CODES.put(NativeKeyEvent.VC_A, KeyEvent.VK_A);
-        KEY_CODES.put(NativeKeyEvent.VC_B, KeyEvent.VK_B);
-        KEY_CODES.put(NativeKeyEvent.VC_C, KeyEvent.VK_C);
+        super(createKeyCodesMapping());
+    }
+
+    private static Map<Integer, Integer> createKeyCodesMapping() {
+        Map<Integer, Integer> keyCodes = new HashMap<>();
+        keyCodes.put(3638, KeyEvent.VK_SHIFT); //right shift on mac book
+        return keyCodes;
+    }
+
+    @Override
+    public OsType getOs() {
+        return OsType.MAC;
     }
 
 }

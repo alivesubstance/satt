@@ -11,11 +11,11 @@ public class Player {
     public static void main(String[] args) {
 
         try {
+//aa
 
 
 
-
-            int xCoord = 608;
+            int xCoord = 650;
             int yCoord = 318;
 
             // Move the cursor
@@ -24,11 +24,11 @@ public class Player {
             robot.mouseMove(xCoord, yCoord);
 
             // change locale to ENG
-//            InputContext.getInstance().selectInputMethod(Locale.ENGLISH);
+            InputContext.getInstance().selectInputMethod(Locale.ENGLISH);
 //
-//            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-//            robot.keyPress(KeyEvent.VK_A);
-//            robot.keyRelease(KeyEvent.VK_A);
+            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            robot.keyPress(KeyEvent.VK_A);
+            robot.keyRelease(KeyEvent.VK_A);
 
             // change locale to RUS
 //            Locale locale = new Locale.Builder()
@@ -45,9 +45,9 @@ public class Player {
             ///////////////////////////////////////////////////////////////////
 
 
-            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-            robot.keyPress(KeyEvent.VK_F);
-            robot.keyRelease(KeyEvent.VK_F);
+//            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//            robot.keyPress(KeyEvent.VK_F);
+//            robot.keyRelease(KeyEvent.VK_F);
 
 
             // simulate alt+z
