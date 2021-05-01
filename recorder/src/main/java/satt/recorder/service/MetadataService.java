@@ -1,5 +1,6 @@
 package satt.recorder.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,10 +13,9 @@ import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
 
+@Slf4j
 @Component
 public class MetadataService {
-
-    private static final Logger logger = LoggerFactory.getLogger(MetadataService.class);
 
     public Metadata getMetadata() {
         return new Metadata(
@@ -29,7 +29,7 @@ public class MetadataService {
         return System.getProperty("user.name");
     }
 
-    private OsType getOs() {
+    public OsType getOs() {
         if (SystemUtils.IS_OS_WINDOWS) {
             return OsType.WINDOWS;
         } else if (SystemUtils.IS_OS_MAC) {
@@ -44,7 +44,7 @@ public class MetadataService {
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             return new Resolution((int)screenSize.getWidth(), (int)screenSize.getHeight());
         } catch (HeadlessException e) {
-            logger.error("Failed to get screen resolution", e);
+            log.error("Failed to get screen resolution", e);
             return new Resolution(-1, -1);
         }
     }

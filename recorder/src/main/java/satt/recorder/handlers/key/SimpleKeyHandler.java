@@ -9,12 +9,12 @@ import satt.recorder.service.ScenarioService;
 
 import java.util.*;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class SimpleKeyHandler implements KeyEventHandler {
 
-    private ScenarioService scenarioService;
-    private KeyboardLayoutService keyboardLayoutService;
+    private final ScenarioService scenarioService;
+    private final KeyboardLayoutService keyboardLayoutService;
 
     @Override
     public boolean process(NativeKeyEvent e) {
