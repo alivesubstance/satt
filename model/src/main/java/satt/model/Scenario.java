@@ -21,6 +21,8 @@ public class Scenario {
     private Metadata metadata;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+
+    @Builder.Default
     private List<Event> events = new ArrayList<>();
 
     public void addEvent(Event e) {

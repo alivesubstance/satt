@@ -10,7 +10,7 @@ import satt.model.Scenario;
 public class ScenarioClient {
 
     public void saveScenario(Scenario scenario) {
-        log.info("{}", scenario);
+
     }
 
 }

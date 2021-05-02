@@ -10,6 +10,7 @@ import satt.model.Scenario;
 import satt.recorder.client.ScenarioClient;
 import satt.recorder.property.RecorderProperties;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
 
 @Slf4j
@@ -21,7 +22,13 @@ public class ScenarioService {
     private final ScenarioClient scenarioClient;
 
     private Scenario scenario;
-    private long lastEventTimestamp;
+    private long lastEventTimestamp = -1;
+
+    //TODO for test purpose. remove after testing
+    @PostConstruct
+    public void init() {
+        startScenario();
+    }
 
     public void startScenario() {
         scenario = Scenario.builder()
@@ -33,10 +40,11 @@ public class ScenarioService {
     }
 
     public void finishScenario() {
-        if (scenario == null) {
-            // scenario wasn't started. nothing to persist
-            return;
-        }
+        //TODO for test purpose. uncomment after testing
+//        if (scenario == null) {
+//            // scenario wasn't started. nothing to persist
+//            return;
+//        }
 
         log.info("Finish scenario {}", scenario);
         scenario.setEndDate(LocalDateTime.now());
@@ -59,6 +67,11 @@ public class ScenarioService {
     }
 
     private void addDelayEvent() {
+        if (lastEventTimestamp == -1) {
+            // do not add delay for first event
+            return;
+        }
+
         long now = System.currentTimeMillis();
         DelayEvent delayEvent = new DelayEvent(now - lastEventTimestamp);
         log.debug("Add delay event {}", delayEvent);

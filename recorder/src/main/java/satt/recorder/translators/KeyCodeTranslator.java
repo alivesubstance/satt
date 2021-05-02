@@ -6,12 +6,12 @@ import satt.model.OsType;
 import java.awt.event.KeyEvent;
 import java.util.*;
 
-public abstract class KeyCodeTranslator {
+public class KeyCodeTranslator {
 
     // JNativeHook to Java AWT Robot key codes mapping
     private static final Map<Integer, Integer> KEY_CODES = new HashMap<>();
 
-    public KeyCodeTranslator(Map<Integer, Integer> osSpecifiKeyCodes) {
+    public KeyCodeTranslator(Map<Integer, Integer> osSpecificKeyCodes) {
         KEY_CODES.put(NativeKeyEvent.VC_A, KeyEvent.VK_A);
         KEY_CODES.put(NativeKeyEvent.VC_B, KeyEvent.VK_B);
         KEY_CODES.put(NativeKeyEvent.VC_C, KeyEvent.VK_C);
@@ -77,13 +77,15 @@ public abstract class KeyCodeTranslator {
         KEY_CODES.put(NativeKeyEvent.VC_ALT, KeyEvent.VK_ALT); //option
         KEY_CODES.put(NativeKeyEvent.VC_META, KeyEvent.VK_META); //cmd
 
-        KEY_CODES.putAll(osSpecifiKeyCodes);
+        KEY_CODES.putAll(osSpecificKeyCodes);
     }
 
     public Integer toRobotKeyCode(int jNativeHookKeyCode) {
         return KEY_CODES.get(jNativeHookKeyCode);
     }
 
-    public abstract OsType getOs();
+    public OsType getOs() {
+        return null;
+    }
 
 }

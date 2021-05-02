@@ -23,26 +23,9 @@ public class Player {
             robot.setAutoDelay(250);
             robot.mouseMove(xCoord, yCoord);
 
-            // change locale to ENG
-            InputContext.getInstance().selectInputMethod(Locale.ENGLISH);
-//
-            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-            robot.keyPress(KeyEvent.VK_A);
-            robot.keyRelease(KeyEvent.VK_A);
-
-            // change locale to RUS
-//            Locale locale = new Locale.Builder()
-//                    .setLanguage("ru")
-//                    .setScript("Cyrl")
-//                    .build();
-//            InputContext.getInstance().selectInputMethod(locale);
-
-
-            ///////////////////////////////////////////////////////////////////
-            //                                                               //
-            // change layout by simulate key combination for layout changing //
-            //                                                               //
-            ///////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////
+            changeKeyboardLayout(robot);
 
 
 //            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
@@ -71,5 +54,28 @@ public class Player {
             System.out.println("Low level input control is not allowed " + e.getMessage());
         }
 
+    }
+
+    private static void changeKeyboardLayout(Robot robot) {
+        // change locale to ENG
+        InputContext.getInstance().selectInputMethod(Locale.ENGLISH);
+//
+        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        robot.keyPress(KeyEvent.VK_A);
+        robot.keyRelease(KeyEvent.VK_A);
+
+        // change locale to RUS
+//            Locale locale = new Locale.Builder()
+//                    .setLanguage("ru")
+//                    .setScript("Cyrl")
+//                    .build();
+//            InputContext.getInstance().selectInputMethod(locale);
+
+
+        ///////////////////////////////////////////////////////////////////
+        //                                                               //
+        // change layout by simulate key combination for layout changing //
+        //                                                               //
+        ///////////////////////////////////////////////////////////////////
     }
 }

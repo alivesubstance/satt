@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.xml.crypto.dsig.keyinfo.KeyInfo;
 import java.util.*;
 
 @Data
@@ -15,7 +16,6 @@ import java.util.*;
 public class KeyEvent implements Event {
 
     private String locale;
-    private String keyText;
     private List<Integer> keyCodes;
 
     @Override
