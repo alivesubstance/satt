@@ -23,8 +23,27 @@ import java.util.*;
 @RequiredArgsConstructor
 public class KeyListener extends SwingKeyAdapter {
 
+    private static final int VC_SHIFT_RIGHT = 3638;
+
     private final MetadataService metadataService;
     private final List<KeyEventHandler> keyEventHandlers;
+
+    @Override
+    public void nativeKeyPressed(NativeKeyEvent nativeEvent) {
+        KeyEvent javaKeyEvent = getJavaKeyEvent(nativeEvent);
+        if (nativeEvent.getKeyCode() == VC_SHIFT_RIGHT) {
+            javaKeyEvent = new KeyEvent(
+                    this,
+                    nativeEvent.getID() - (NativeKeyEvent.NATIVE_KEY_FIRST - KeyEvent.KEY_FIRST),
+                    System.currentTimeMillis(),
+                    getJavaModifiers(nativeEvent.getModifiers()),
+                    KeyEvent.VK_SHIFT,
+                    nativeEvent.getKeyChar(),
+                    KeyEvent.KEY_LOCATION_RIGHT
+            );
+        }
+        keyPressed(javaKeyEvent);
+    }
 
     @Override
     public void keyPressed(KeyEvent e) {
