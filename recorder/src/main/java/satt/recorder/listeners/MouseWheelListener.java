@@ -2,27 +2,25 @@ package satt.recorder.listeners;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jnativehook.mouse.NativeMouseEvent;
-import org.jnativehook.mouse.SwingMouseAdapter;
+import org.jnativehook.mouse.SwingMouseWheelAdapter;
 import org.springframework.stereotype.Component;
 import satt.model.MouseClickEvent;
 import satt.recorder.service.ScenarioService;
 import satt.recorder.util.ModifiersUtil;
 
+import java.awt.event.MouseWheelEvent;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class MouseListener extends SwingMouseAdapter {
+public class MouseWheelListener extends SwingMouseWheelAdapter {
 
     private final ScenarioService scenarioService;
 
     @Override
-    public void nativeMouseClicked(NativeMouseEvent e) {
-        scenarioService.addEvent(new MouseClickEvent(
-                e.getX(),
-                e.getY(),
-                e.getButton(),
-                ModifiersUtil.getSpecialKeyCodes(e.getModifiers())
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        scenarioService.addEvent(new satt.model.MouseWheelEvent(
+
         ));
     }
 

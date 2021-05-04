@@ -11,13 +11,15 @@ import java.util.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class KeyEvent implements Event {
+public class MouseClickEvent implements Event {
 
-    private String locale;
-    private List<Integer> keyCodes;
+    private int x;
+    private int y;
+    private int button;
+    private List<Integer> specialKeyCodes;
 
     @Override
     public Type getType() {
-        return Type.KEY;
+        return Type.MOUSE_CLICK;
     }
 }

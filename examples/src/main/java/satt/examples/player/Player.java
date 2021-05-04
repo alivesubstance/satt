@@ -14,18 +14,29 @@ public class Player {
 //aa
 
 
-
-            int xCoord = 650;
-            int yCoord = 318;
+            int xCoord = 518;
+            int yCoord = 309;
 
             // Move the cursor
             Robot robot = new Robot();
             robot.setAutoDelay(250);
             robot.mouseMove(xCoord, yCoord);
+            robot.mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+
+            robot.mouseWheel(-10);
+
+
+
+
+//            robot.keyPress(157); // cmd
+//            robot.keyPress(65); // a
+//            robot.keyRelease(65); //a
+//            robot.keyRelease(157); //cmd
+
 
             ////////////////////////////////////////////////////////////////////////////////
             ////////////////////////////////////////////////////////////////////////////////
-            changeKeyboardLayout(robot);
+//            changeKeyboardLayout(robot);
 
 
 //            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
@@ -42,7 +53,6 @@ public class Player {
 
 
             // Simulate double mouse click
-
 //            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 //            robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 //            robot.delay(300);

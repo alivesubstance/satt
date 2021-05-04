@@ -6,12 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
-//@NoArgsConstructor
-public class MouseEvent implements Event {
+@NoArgsConstructor
+public class MouseWheelEvent implements Event {
+
+    private int amount;
+
     @Override
     public Type getType() {
-        return Type.MOUSE;
+        return Type.MOUSE_WHEEL;
     }
 }

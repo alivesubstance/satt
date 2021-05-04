@@ -13,23 +13,6 @@ public interface KeyEventHandler {
         return null;
     }
 
-    default boolean isMacCommandPressed(KeyEvent e) {
-        return (e.getModifiersEx() & KeyEvent.META_DOWN_MASK) != 0;
-    }
-
-    default boolean isCtrPressed(KeyEvent e) {
-        return (e.getModifiersEx() & KeyEvent.CTRL_DOWN_MASK) != 0;
-    }
-
-    // option at MAC
-    default boolean isAltPressed(KeyEvent e) {
-        return (e.getModifiersEx() & KeyEvent.ALT_DOWN_MASK) != 0;
-    }
-
-    default boolean isShiftPressed(KeyEvent e) {
-        return (e.getModifiersEx() & KeyEvent.SHIFT_DOWN_MASK) != 0;
-    }
-
     default boolean isSpecialKey(KeyEvent e) {
         return e.getKeyCode() == KeyEvent.VK_ALT ||
                 e.getKeyCode() == KeyEvent.VK_CONTROL ||

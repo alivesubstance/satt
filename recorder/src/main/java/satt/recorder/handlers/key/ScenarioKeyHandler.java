@@ -10,6 +10,8 @@ import satt.recorder.service.ScenarioService;
 
 import java.awt.event.KeyEvent;
 
+import static satt.recorder.util.ModifiersUtil.*;
+
 @Slf4j
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -20,7 +22,11 @@ public class ScenarioKeyHandler implements KeyEventHandler {
 
     @Override
     public boolean process(KeyEvent e) {
-        if (isCtrPressed(e) && isShiftPressed(e) && (isAltPressed(e) || isMacCommandPressed(e))) {
+        int modifiers = e.getModifiersEx();
+        if (isCtrPressed(modifiers) &&
+                isShiftPressed(modifiers) &&
+                (isAltPressed(modifiers)) || isMacCommandPressed(modifiers)
+        ) {
             if (e.getKeyCode() == NativeKeyEvent.VC_F9) {
                 scenarioService.startScenario();
                 return true;

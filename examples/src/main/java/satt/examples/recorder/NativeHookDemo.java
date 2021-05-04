@@ -213,11 +213,11 @@ public class NativeHookDemo extends JFrame implements ActionListener, ItemListen
             }
         } else if (item == menuItemButtonEvents) {
 //             Button checkbox was changed, adjust listeners accordingly
-//            if (e.getStateChange() == ItemEvent.SELECTED) {
-//                GlobalScreen.addNativeMouseListener(this);
-//            } else {
-//                GlobalScreen.removeNativeMouseListener(this);
-//            }
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                GlobalScreen.addNativeMouseListener(this);
+            } else {
+                GlobalScreen.removeNativeMouseListener(this);
+            }
         } else if (item == menuItemMotionEvents) {
             // Motion checkbox was changed, adjust listeners accordingly
 //            if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -227,11 +227,11 @@ public class NativeHookDemo extends JFrame implements ActionListener, ItemListen
 //            }
         } else if (item == menuItemWheelEvents) {
             // Motion checkbox was changed, adjust listeners accordingly
-//            if (e.getStateChange() == ItemEvent.SELECTED) {
-//                GlobalScreen.addNativeMouseWheelListener(this);
-//            } else {
-//                GlobalScreen.removeNativeMouseWheelListener(this);
-//            }
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                GlobalScreen.addNativeMouseWheelListener(this);
+            } else {
+                GlobalScreen.removeNativeMouseWheelListener(this);
+            }
         }
     }
 
