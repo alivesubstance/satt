@@ -1,5 +1,6 @@
 package satt.recorder.config;
 
+import lombok.RequiredArgsConstructor;
 import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.slf4j.Logger;
@@ -8,23 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import satt.recorder.listeners.KeyListener;
 import satt.recorder.listeners.MouseListener;
+import satt.recorder.listeners.MouseWheelListener;
 
 import javax.annotation.PostConstruct;
 import java.util.logging.Level;
 
 @Configuration
+@RequiredArgsConstructor
 public class JNativeHookConfiguration {
 
     private static final Logger logger = LoggerFactory.getLogger(JNativeHookConfiguration.class);
 
-    private MouseListener mouseListener;
-    private KeyListener keyListener;
-
-    @Autowired
-    public JNativeHookConfiguration(MouseListener mouseListener, KeyListener keyListener) {
-        this.mouseListener = mouseListener;
-        this.keyListener = keyListener;
-    }
+    private final KeyListener keyListener;
+    private final MouseListener mouseListener;
+    private final MouseWheelListener mouseWheelListener;
 
     @PostConstruct
     public void setup() {
@@ -45,8 +43,9 @@ public class JNativeHookConfiguration {
 //        handler.setLevel(Level.ALL);
 //        log.addHandler(handler);
 
-        GlobalScreen.addNativeMouseListener(mouseListener);
         GlobalScreen.addNativeKeyListener(keyListener);
+        GlobalScreen.addNativeMouseListener(mouseListener);
+        GlobalScreen.addNativeMouseWheelListener(mouseWheelListener);
 
         logger.info("Finish configuring JNativeHook");
     }

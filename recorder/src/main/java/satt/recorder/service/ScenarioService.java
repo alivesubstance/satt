@@ -59,11 +59,10 @@ public class ScenarioService {
             // scenario is not started yet. ignore event
             return;
         }
+        addDelayEvent();
 
         log.debug("Add new event {}", e);
         scenario.addEvent(e);
-
-        addDelayEvent();
     }
 
     private void addDelayEvent() {
