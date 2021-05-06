@@ -69,6 +69,7 @@ public class ScenarioService {
     private void addDelayEvent() {
         if (lastEventTimestamp == -1) {
             // do not add delay for first event
+            lastEventTimestamp = System.currentTimeMillis();
             return;
         }
 

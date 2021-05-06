@@ -27,10 +27,10 @@ public class ScenarioKeyHandler implements KeyEventHandler {
                 isShiftPressed(modifiers) &&
                 (isAltPressed(modifiers)) || isMacCommandPressed(modifiers)
         ) {
-            if (e.getKeyCode() == NativeKeyEvent.VC_F9) {
+            if (e.getKeyCode() == KeyEvent.VK_F9) {
                 scenarioService.startScenario();
                 return true;
-            } else if (e.getKeyCode() == NativeKeyEvent.VC_F10) {
+            } else if (e.getKeyCode() == KeyEvent.VK_F10) {
                 scenarioService.finishScenario();
                 return true;
             }
