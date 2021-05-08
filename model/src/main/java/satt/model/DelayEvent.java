@@ -11,10 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DelayEvent implements Event {
 
+    @Builder.Default
+    private Type type = Type.DELAY;
     private long millis;
-
-    @Override
-    public Type getType() {
-        return Type.DELAY;
-    }
 }

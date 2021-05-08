@@ -1,12 +1,12 @@
 package satt.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Data
@@ -16,11 +16,17 @@ import java.util.*;
 @ToString(exclude = "events")
 public class Scenario {
 
+    private static final String DATE_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
+
     @Builder.Default
     private UUID id = UUID.randomUUID();
     private Metadata metadata;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
+    private Date startDate;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
+    private Date endDate;
 
     @Builder.Default
     private List<Event> events = new ArrayList<>();

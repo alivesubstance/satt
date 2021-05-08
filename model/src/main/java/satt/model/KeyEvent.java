@@ -13,11 +13,9 @@ import java.util.*;
 @NoArgsConstructor
 public class KeyEvent implements Event {
 
+    @Builder.Default
+    private Type type = Type.KEY;
     private String locale;
     private List<Integer> keyCodes;
 
-    @Override
-    public Type getType() {
-        return Type.KEY;
-    }
 }
