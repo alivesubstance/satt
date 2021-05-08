@@ -2,16 +2,13 @@ package satt.recorder.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import satt.model.DelayEvent;
 import satt.model.Event;
 import satt.model.Scenario;
 import satt.recorder.client.ScenarioClient;
-import satt.recorder.property.RecorderProperties;
 
-import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -24,31 +21,24 @@ public class ScenarioService {
     private Scenario scenario;
     private long lastEventTimestamp = -1;
 
-    //TODO for test purpose. remove after testing
-    @PostConstruct
-    public void init() {
-        startScenario();
-    }
-
     public void startScenario() {
         scenario = Scenario.builder()
                 .metadata(metadataService.getMetadata())
-                .startDate(LocalDateTime.now())
+                .startDate(new Date())
                 .build();
 
         log.info("Start new scenario {}", scenario);
     }
 
     public void finishScenario() {
-        //TODO for test purpose. uncomment after testing
-//        if (scenario == null) {
-//            // scenario wasn't started. nothing to persist
-//            return;
-//        }
+        if (scenario == null) {
+            log.warn("Scenario has not been started yet");
+            return;
+        }
 
         log.info("Finish scenario {}", scenario);
-        scenario.setEndDate(LocalDateTime.now());
-        scenarioClient.saveScenario(scenario);
+        scenario.setEndDate(new Date());
+        scenarioClient.saveScenarioToFile(scenario);
 
         // eliminate current scenario
         scenario = null;
@@ -66,14 +56,14 @@ public class ScenarioService {
     }
 
     private void addDelayEvent() {
+        // do not add delay for first event
         if (lastEventTimestamp == -1) {
-            // do not add delay for first event
             lastEventTimestamp = System.currentTimeMillis();
             return;
         }
 
         long now = System.currentTimeMillis();
-        DelayEvent delayEvent = new DelayEvent(now - lastEventTimestamp);
+        DelayEvent delayEvent = DelayEvent.builder().millis(now - lastEventTimestamp).build();
         log.debug("Add delay event {}", delayEvent);
 
         scenario.addEvent(delayEvent);

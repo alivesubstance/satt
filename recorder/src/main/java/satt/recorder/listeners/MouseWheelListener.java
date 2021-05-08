@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jnativehook.mouse.SwingMouseWheelAdapter;
 import org.springframework.stereotype.Component;
-import satt.model.MouseClickEvent;
 import satt.recorder.service.ScenarioService;
 import satt.recorder.util.ModifiersUtil;
 

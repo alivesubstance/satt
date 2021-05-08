@@ -9,6 +9,6 @@
         <Root level="info" additivity="false">
             <AppenderRef ref="console" />
         </Root>
-        <Logger name="satt" level="debug" />
+        <Logger name="satt" level="info" />
     </Loggers>
 </Configuration>

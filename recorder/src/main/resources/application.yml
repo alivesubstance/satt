@@ -1,3 +1,1 @@
-scenarioServiceUrl: localhost:8080/sceraio
-mouse.doubleClickDelayMs: 250
-
+scenarioUrl: https://localhost:3000/scenario

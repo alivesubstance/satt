@@ -2,7 +2,6 @@ package satt.recorder.listeners;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jnativehook.mouse.NativeMouseEvent;
 import org.jnativehook.mouse.SwingMouseAdapter;
 import org.springframework.stereotype.Component;
 import satt.model.MouseClickEvent;
