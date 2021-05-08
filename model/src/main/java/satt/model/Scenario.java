@@ -20,6 +20,7 @@ public class Scenario {
 
     @Builder.Default
     private UUID id = UUID.randomUUID();
+    private String name;
     private Metadata metadata;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
