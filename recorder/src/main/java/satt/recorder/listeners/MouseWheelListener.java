@@ -18,10 +18,11 @@ public class MouseWheelListener extends SwingMouseWheelAdapter {
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-        scenarioService.addEvent(new satt.model.MouseWheelEvent(
-                e.getWheelRotation() * e.getScrollAmount(),
-                ModifiersUtil.getSpecialKeyCodes(e.getModifiersEx())
-        ));
+        scenarioService.addEvent(satt.model.MouseWheelEvent.builder()
+                .amount(e.getWheelRotation() * e.getScrollAmount())
+                .specialKeyCodes(ModifiersUtil.getSpecialKeyCodes(e.getModifiersEx()))
+                .build()
+        );
     }
 
     @Override

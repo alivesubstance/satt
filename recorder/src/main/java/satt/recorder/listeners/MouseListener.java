@@ -19,12 +19,13 @@ public class MouseListener extends SwingMouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        scenarioService.addEvent(new MouseClickEvent(
-                e.getX(),
-                e.getY(),
-                e.getButton(),
-                ModifiersUtil.getSpecialKeyCodes(e.getModifiersEx())
-        ));
+        scenarioService.addEvent(MouseClickEvent.builder()
+                .x(e.getX())
+                .y(e.getY())
+                .button(e.getButton())
+                .specialKeyCodes(ModifiersUtil.getSpecialKeyCodes(e.getModifiersEx()))
+                .build()
+        );
     }
 
     @Override
