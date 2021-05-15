@@ -5,11 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import satt.model.Scenario;
-import satt.recorder.property.RecorderProperties;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -17,29 +16,30 @@ import java.nio.file.Files;
 
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class ScenarioClient {
 
     public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
             .registerModule(new JavaTimeModule());
 
-    public static final String SCENARIO_JSON_FOLDER = "/Users/mirian/code/3rdparty/satt/scenarios";
+    public static final String SCENARIO_JSON_FOLDER = System.getProperty("user.home");
 
-    private RecorderProperties properties;
+    @Value("${scenarioUrl}")
+    private String scenarioUrl;
+
+    @Value("${http.connectionTimeout}")
+    private long connectionTimeout;
+
+    @Value("${http.socketTimeout}")
+    private long socketTimeout;
 
     public void saveScenario(Scenario scenario) {
-        String scenarioJson;
-        try {
-            scenarioJson = OBJECT_MAPPER.writeValueAsString(scenario);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        String scenarioJson = toJson(scenario);
 
         HttpResponse<String> response;
         String errMsg = "Failed to save scenario";
         try {
-            Unirest.setTimeouts(500, 3000);
-            response = Unirest.post(properties.scenarioUrl)
+            Unirest.setTimeouts(connectionTimeout, socketTimeout);
+            response = Unirest.post(scenarioUrl)
                     .body(scenarioJson)
                     .asString();
         } catch (Exception e) {
@@ -52,6 +52,16 @@ public class ScenarioClient {
             log.error("{}: {}", errMsg, scenarioJson);
             throw new RuntimeException(errMsg);
         }
+    }
+
+    private String toJson(Scenario scenario) {
+        String scenarioJson;
+        try {
+            scenarioJson = OBJECT_MAPPER.writeValueAsString(scenario);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        return scenarioJson;
     }
 
     public void saveScenarioToFile(Scenario scenario) {

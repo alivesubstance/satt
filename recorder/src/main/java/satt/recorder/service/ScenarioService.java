@@ -38,7 +38,7 @@ public class ScenarioService {
 
         log.info("Finish scenario {}", scenario);
         scenario.setEndDate(new Date());
-        scenarioClient.saveScenarioToFile(scenario);
+        scenarioClient.saveScenario(scenario);
 
         // eliminate current scenario
         scenario = null;

@@ -1,17 +1,21 @@
 package satt.recorder;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.Banner;
+import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @Slf4j
-@ComponentScan
+@SpringBootApplication
 public class Recorder {
 
     public static void main(String[] args) {
-        log.info("Starting Recorder application");
-
-        new AnnotationConfigApplicationContext(Recorder.class);
+        new SpringApplicationBuilder(Recorder.class)
+                .web(WebApplicationType.NONE)
+                .headless(false)
+                .bannerMode(Banner.Mode.OFF)
+                .run(args);
     }
 
 }

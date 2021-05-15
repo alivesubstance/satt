@@ -4,10 +4,18 @@
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
         </Console>
+        <RollingFile name="file" fileName="logs/recorder.log" filePattern="logs/recorder-%d{MM-dd-yyyy}.log.gz"
+                     ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</Pattern>
+            </PatternLayout>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
     </Appenders>
     <Loggers>
         <Root level="info" additivity="false">
             <AppenderRef ref="console" />
+            <AppenderRef ref="file" />
         </Root>
         <Logger name="satt" level="info" />
     </Loggers>
