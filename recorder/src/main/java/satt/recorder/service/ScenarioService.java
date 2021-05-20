@@ -36,10 +36,10 @@ public class ScenarioService {
             return;
         }
 
-        log.info("Finish scenario {}", scenario);
         scenario.setEndDate(new Date());
         scenarioClient.saveScenario(scenario);
 
+        log.info("Finish scenario {}", scenario);
         // eliminate current scenario
         scenario = null;
     }

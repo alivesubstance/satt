@@ -38,12 +38,14 @@ public class ScenarioClient {
         HttpResponse<String> response;
         String errMsg = "Failed to save scenario";
         try {
+            log.debug("Save scenario {}", scenarioJson);
+
             Unirest.setTimeouts(connectionTimeout, socketTimeout);
             response = Unirest.post(scenarioUrl)
                     .body(scenarioJson)
                     .asString();
         } catch (Exception e) {
-            log.error("{}: {}", errMsg, scenarioJson);
+            log.error("{}: {}", errMsg, scenarioJson, e);
             throw new RuntimeException(e);
         }
 

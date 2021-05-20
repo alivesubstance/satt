@@ -5,13 +5,13 @@ import org.jnativehook.GlobalScreen;
 import org.jnativehook.NativeHookException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import satt.recorder.listeners.KeyListener;
 import satt.recorder.listeners.MouseListener;
 import satt.recorder.listeners.MouseWheelListener;
 
 import javax.annotation.PostConstruct;
+import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 
 @Configuration
@@ -27,6 +27,7 @@ public class JNativeHookConfiguration {
     @PostConstruct
     public void setup() {
         logger.info("Start configuring JNativeHook");
+        initLogger();
 
         try {
             GlobalScreen.registerNativeHook();
@@ -35,13 +36,6 @@ public class JNativeHookConfiguration {
             logger.error("There was a problem registering the native hook", ex);
             System.exit(1);
         }
-
-        initLogger();
-
-        // Setup a generic ConsoleHandler
-//        ConsoleHandler handler = new ConsoleHandler();
-//        handler.setLevel(Level.ALL);
-//        log.addHandler(handler);
 
         GlobalScreen.addNativeKeyListener(keyListener);
         GlobalScreen.addNativeMouseListener(mouseListener);
@@ -54,6 +48,11 @@ public class JNativeHookConfiguration {
         java.util.logging.Logger log = java.util.logging.Logger.getLogger(GlobalScreen.class.getPackage().getName());
         log.setUseParentHandlers(false);
         log.setLevel(Level.WARNING);
+
+        // Setup a generic ConsoleHandler
+        ConsoleHandler handler = new ConsoleHandler();
+        handler.setLevel(Level.ALL);
+        log.addHandler(handler);
     }
 
 }
