@@ -9,5 +9,5 @@ java \
   -XX:+HeapDumpOnOutOfMemoryError \
   -Dfile.encoding=UTF-8 \
   -Dlog4j.configurationFile=file:config/log4j2.xml \
-  -jar lib/recorder-0.1.jar \
+  -jar lib/recorder-0.1-uber.jar \
   --spring.config.location=config/application.properties
