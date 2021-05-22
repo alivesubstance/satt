@@ -18,8 +18,14 @@ public class MouseWheelListener extends SwingMouseWheelAdapter {
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
+        log.trace("Mouse wheel event unitsToScroll {}, scrollType {}, scrollAmount {}, " +
+                        "wheelRotation {}, preciseWheelRotation {}",
+                e.getUnitsToScroll(), e.getScrollType(), e.getScrollAmount(), e.getWheelRotation(),
+                e.getPreciseWheelRotation()
+        );
+
         scenarioService.addEvent(satt.model.MouseWheelEvent.builder()
-                .amount(e.getWheelRotation() * e.getScrollAmount())
+                .amount(e.getWheelRotation())
                 .specialKeyCodes(ModifiersUtil.getSpecialKeyCodes(e.getModifiersEx()))
                 .build()
         );

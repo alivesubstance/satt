@@ -50,6 +50,7 @@ public class KeyListener extends SwingKeyAdapter {
 
         if (e.getKeyCode() == KeyEvent.VK_UNDEFINED) {
             log.warn("Failed to get key code for event {}+", e);
+            return;
         }
 
         for (KeyEventHandler keyEventHandler : keyEventHandlers) {

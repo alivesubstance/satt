@@ -22,6 +22,10 @@ public class ScenarioService {
     private long lastEventTimestamp = -1;
 
     public void startScenario() {
+        if (scenario != null) {
+            log.warn("Failed to start new scenario. There is already one in progress");
+            return;
+        }
         scenario = Scenario.builder()
                 .metadata(metadataService.getMetadata())
                 .startDate(new Date())
@@ -37,11 +41,14 @@ public class ScenarioService {
         }
 
         scenario.setEndDate(new Date());
-        scenarioClient.saveScenario(scenario);
+        try {
+            scenarioClient.saveScenario(scenario);
+        } catch (Exception e) {
+            log.error("Failed to save scenario {} but it will be stopped", scenario.getId(), e);
+        }
 
         log.info("Finish scenario {}", scenario);
-        // eliminate current scenario
-        scenario = null;
+        resetScenario();
     }
 
     public void addEvent(Event e) {
@@ -53,6 +60,11 @@ public class ScenarioService {
 
         log.debug("Add new event {}", e);
         scenario.addEvent(e);
+    }
+
+    private void resetScenario() {
+        scenario = null;
+        lastEventTimestamp = -1;
     }
 
     private void addDelayEvent() {

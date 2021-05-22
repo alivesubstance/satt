@@ -6,8 +6,10 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpHeaders;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.MimeTypeUtils;
 import satt.model.Scenario;
 
 import java.io.File;
@@ -42,6 +44,7 @@ public class ScenarioClient {
 
             Unirest.setTimeouts(connectionTimeout, socketTimeout);
             response = Unirest.post(scenarioUrl)
+                    .header(HttpHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON_VALUE + "; charset=utf-8")
                     .body(scenarioJson)
                     .asString();
         } catch (Exception e) {
@@ -51,7 +54,9 @@ public class ScenarioClient {
 
         int status = response.getStatus();
         if (status % 200 != 0) {
-            log.error("{}: {}", errMsg, scenarioJson);
+            log.error("Response text: {}, response body: {}. Scenario {}",
+                    response.getStatusText(), response.getBody(), scenarioJson
+            );
             throw new RuntimeException(errMsg);
         }
     }

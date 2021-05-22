@@ -8,23 +8,30 @@ import java.awt.im.InputContext;
 import java.util.*;
 
 public class Player {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         try {
-//aa
+//a
 
 
-            int xCoord = 518;
+            int xCoord = 2000;
             int yCoord = 309;
+
+            int button1DownMask = KeyEvent.BUTTON1_DOWN_MASK;
+            System.out.println(button1DownMask);
 
             // Move the cursor
             Robot robot = new Robot();
-            robot.setAutoDelay(250);
+//            robot.setAutoWaitForIdle(true);
             robot.mouseMove(xCoord, yCoord);
-            robot.mousePress(KeyEvent.BUTTON1_DOWN_MASK);
+            robot.mousePress(button1DownMask);
+            robot.mouseRelease(button1DownMask);
 
-            robot.mouseWheel(-10);
-
+            for (int i = 0; i < 10; i++) {
+                robot.mouseWheel(1);
+                Thread.sleep(250);
+            }
+//            robot.mouseWheel(100);
 
 
 
