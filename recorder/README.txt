@@ -6,12 +6,13 @@ Recorder
 1) Скалирование экрана должно быть выставлено в 100%(как по-умолчанию)
 2) Для работы приложения требуется установка Java SE 11, которую можно скачать
 с официального сайта Oracle https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html
+Системная переменная PATH должена содержать путь до bin директории из поставке JRE.
 
 
 Структура поставки:
     - config, папка с конфигурационными файлами
         - application.properties, файл с настройками приложения
-        -log42j.xml, файл с настройками логирования
+        -l og42j.xml, файл с настройками логирования
     - lib, Java Archive приложения
     - logs, файлы логирования
 
@@ -44,9 +45,9 @@ WIN | alt+ctrl+shift+F9      | alt+ctrl+shift+F10
 
 
 Типичные сообщения в логах
-    - "Recorder - Started Recorder in 0.878 seconds (JVM running for 6.56)", приложение готово к работе
-    - "ScenarioService - Start new scenario", запись сценария начата
-    - "ScenarioService - Finish scenario", запись сценария окончена
+    - "Started Recorder in 0.878 seconds (JVM running for 6.56)", приложение запущено и готово к работе
+    - "Start new scenario", начало записи сценария
+    - "Finish scenario", окончание записи сценария
 
 
 Особенности записи сценария
@@ -89,3 +90,14 @@ WIN | alt+ctrl+shift+F9      | alt+ctrl+shift+F10
         Dumping heap to java_pidXXXX.hprof
     Нужно сохранить файл hprof для дальнейшей диагностики.
     Быстрое решение поднять память настройкой -Xmx128m -> -Xmx256m в файле запуска приложения.
+
+3) Ошибка означает что приложение не удалось отправить сценарий для сохранения на сторонний REST API сервис.
+    [ERROR] 2021-05-23 16:40:13.236 [JNativeHook Dispatch Thread] ScenarioService -
+        Failed to save scenario fc4a5c50-21b0-42c7-aeca-477fe3f00549 but it will be stopped
+        java.lang.RuntimeException: com.mashape.unirest.http.exceptions.UnirestException:
+        org.apache.http.conn.HttpHostConnectException:
+        Connect to localhost:31000 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed:
+        Connection refused (Connection refused)
+
+    При этом сам сценарий будет записан в лог в сообщение:
+        Failed to save scenario
