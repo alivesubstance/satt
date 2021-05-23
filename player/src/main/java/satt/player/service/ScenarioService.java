@@ -46,6 +46,7 @@ public class ScenarioService {
     }
 
     private void playEvent(Event event, Robot robot) {
+        log.trace("Playing {}", event);
         switch (event.getType()) {
             case KEY:
                 processKeyEvent((KeyEvent) event, robot);
@@ -65,8 +66,6 @@ public class ScenarioService {
     }
 
     private void processDelayEvent(DelayEvent event) {
-        log.trace("Playing delay event for {}ms", event.getMillis());
-
         try {
             Thread.sleep(event.getMillis());
         } catch (InterruptedException e) {
@@ -75,23 +74,13 @@ public class ScenarioService {
     }
 
     private void processMouseWheelEvent(MouseWheelEvent event, Robot robot) {
-        log.trace("Playing mouse wheel event for amount {} and special key codes {}",
-                event.getAmount(), event.getSpecialKeyCodes()
-        );
-
         event.getSpecialKeyCodes().forEach(robot::keyPress);
-        // JNativeHook amount and amount of mouse wheels for robot have different signs
-        // in order to make mouse wheel movements consistent
-        // the sign should be change to opposite
-        robot.mouseWheel(-1 * event.getAmount());
+        robot.mouseWheel(event.getAmount());
         event.getSpecialKeyCodes().forEach(robot::keyRelease);
     }
 
     private void processMouseClickEvent(MouseClickEvent event, Robot robot) {
         int mouseButtonMask = mouseButtonMaskByNumber.get(event.getButton());
-        log.trace("Playing mouse click event for button {}(mask {}) and special key codes {}",
-                event.getButton(), mouseButtonMask, event.getSpecialKeyCodes()
-        );
 
         robot.mouseMove(event.getX(), event.getY());
         event.getSpecialKeyCodes().forEach(robot::keyPress);
@@ -101,8 +90,6 @@ public class ScenarioService {
     }
 
     private void processKeyEvent(KeyEvent event, Robot robot) {
-        log.trace("Playing key event with locale {} and key codes {}", event.getLocale(), event.getKeyCodes());
-
         event.getKeyCodes().forEach(robot::keyPress);
         event.getKeyCodes().forEach(robot::keyRelease);
     }

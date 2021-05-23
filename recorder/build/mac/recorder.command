@@ -8,7 +8,7 @@ java \
   -Xmx128m \
   -XX:+HeapDumpOnOutOfMemoryError \
   -XX:HeapDumpPath=dumps \
-  -Xlog:gc*:logs/gc.log:time,level,tags \
+  -Xlog:gc*:logs/gc.log:time,level,tags:filecount=2,filesize=5m \
   -Dfile.encoding=UTF-8 \
   -Dlog4j.configurationFile=file:config/log4j2.xml \
   -jar lib/recorder-0.1-uber.jar \

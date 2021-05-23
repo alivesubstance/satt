@@ -18,6 +18,6 @@
             <AppenderRef ref="console" />
             <AppenderRef ref="file" />
         </Root>
-        <Logger name="satt" level="trace" />
+        <Logger name="satt" level="debug" />
     </Loggers>
 </Configuration>

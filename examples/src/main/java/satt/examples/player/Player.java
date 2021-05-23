@@ -14,22 +14,20 @@ public class Player {
 //a
 
 
-            int xCoord = 2000;
-            int yCoord = 309;
+            int xCoord = 1568;
+            int yCoord = 577;
 
             int button1DownMask = KeyEvent.BUTTON1_DOWN_MASK;
-            System.out.println(button1DownMask);
 
             // Move the cursor
             Robot robot = new Robot();
-//            robot.setAutoWaitForIdle(true);
             robot.mouseMove(xCoord, yCoord);
             robot.mousePress(button1DownMask);
             robot.mouseRelease(button1DownMask);
 
-            for (int i = 0; i < 1; i++) {
-                robot.mouseWheel(-3);
-                Thread.sleep(1000);
+            for (int i = 0; i < 10; i++) {
+                robot.mouseWheel(1);
+                Thread.sleep(250);
             }
 //            robot.mouseWheel(100);
 

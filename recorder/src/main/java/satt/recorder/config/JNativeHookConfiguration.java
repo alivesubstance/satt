@@ -51,7 +51,7 @@ public class JNativeHookConfiguration {
 
         // Setup a generic ConsoleHandler
         ConsoleHandler handler = new ConsoleHandler();
-        handler.setLevel(Level.ALL);
+        handler.setLevel(Level.OFF);
         log.addHandler(handler);
     }
 
