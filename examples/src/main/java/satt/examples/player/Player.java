@@ -27,9 +27,9 @@ public class Player {
             robot.mousePress(button1DownMask);
             robot.mouseRelease(button1DownMask);
 
-            for (int i = 0; i < 10; i++) {
-                robot.mouseWheel(1);
-                Thread.sleep(250);
+            for (int i = 0; i < 1; i++) {
+                robot.mouseWheel(-3);
+                Thread.sleep(1000);
             }
 //            robot.mouseWheel(100);
 
