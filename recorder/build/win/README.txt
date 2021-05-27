@@ -8,7 +8,6 @@ Recorder
 с официального сайта Oracle https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html
 Системная переменная PATH должена содержать путь до bin директории из поставке JRE.
 
-
 Структура поставки:
     - config, папка с конфигурационными файлами
         - application.properties, файл с настройками приложения
@@ -62,6 +61,20 @@ WIN | alt+ctrl+shift+F9      | alt+ctrl+shift+F10
     WIN:
         а) - на дополнительной клавиатуре
         б) + на дополнительной клавиатуре
+
+
+Сборка из исходников
+1) Установить Java SE 11. Выставить системную переменную JAVA_HOME=$PATH_TO_JRE_INSTALL_DIR
+2) Добавить $JAVA_HOME/bin в $PATH
+3) Проверить что java усновлена вызвав в консоли java -version
+4) Установить Maven https://maven.apache.org/install.html
+5) Проверить что maven установлен через консоль mvn -version
+6) Выкачать репозитори с https://github.com/alivesubstance/satt
+7) В рутовой директории проекта в консоли выполнить команду mvn clean install
+8) По окончанию сборки должна появиться надпись BUILD SUCCESS
+9) После удачной сборки появится артефакт recorder/target/recorder-0.1-uber.jar
+10) Скопировать его в recorder/build/$PLATFORM/lib
+11) Рекодер запускается командой recorder/build/$PLATFORM/recorder.{command для mac, bat для win}
 
 
 Диагностика неполадок
